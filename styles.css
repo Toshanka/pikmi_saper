@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Manrope:wght@400;600;700;800&display=swap');
+
+:root {
+  --ink: #312448;
+  --muted: #8c7da4;
+  --lavender: #eee8ff;
+  --surface: rgba(255, 255, 255, .82);
+  --pink: #ec6f9f;
+  --pink-dark: #c94d7e;
+  --mint: #a8e1cd;
+  --shadow: 0 22px 55px rgba(105, 67, 120, .18);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(255, 198, 219, .72), transparent 32%),
+    radial-gradient(circle at 93% 90%, rgba(170, 225, 209, .66), transparent 31%),
+    linear-gradient(135deg, #fff9fb 0%, #f0ebff 51%, #f7fffc 100%);
+}
+
+button { font: inherit; }
+
+.app-shell { width: min(100% - 28px, 580px); margin: 0 auto; padding: 34px 0 28px; }
+.hero { display: flex; align-items: flex-start; justify-content: space-between; padding: 0 9px 23px; animation: rise .55s ease both; }
+.eyebrow { margin: 0 0 8px; color: var(--pink-dark); font-size: 10px; font-weight: 800; letter-spacing: .15em; }
+h1 { margin: 0; font-size: clamp(36px, 10vw, 58px); line-height: .95; letter-spacing: -.055em; }
+h1 span { color: var(--pink); font-size: .68em; vertical-align: 15%; }
+.subtitle { max-width: 355px; margin: 15px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.hero-mark { color: var(--pink); font-size: 52px; line-height: .8; transform: rotate(13deg); }
+
+.game-panel { padding: 22px 18px 20px; border: 1px solid rgba(255, 255, 255, .78); border-radius: 24px; background: var(--surface); box-shadow: var(--shadow); backdrop-filter: blur(14px); animation: rise .7s .08s ease both; }
+.stats-row { display: grid; grid-template-columns: 1fr 1fr 52px; gap: 10px; align-items: center; }
+.stat { padding: 10px 13px; border-radius: 13px; background: var(--lavender); }
+.stat span { display: block; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
+.stat strong { display: block; margin-top: 3px; font: 20px 'DM Mono', monospace; }
+.timer-stat { background: #fff0f4; }
+.face-button { height: 52px; border: 0; border-radius: 15px; color: white; background: var(--pink); font-size: 26px; cursor: pointer; box-shadow: 0 6px 16px rgba(236, 111, 159, .28); transition: transform .2s, background .2s; }
+.face-button:hover { background: var(--pink-dark); transform: translateY(-2px); }
+.status-line { min-height: 38px; display: grid; place-items: center; padding: 12px 8px 10px; color: var(--muted); font-size: 12px; text-align: center; }
+.board { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; width: min(100%, 445px); margin: 0 auto; padding: 7px; border-radius: 14px; background: #d8cce8; box-shadow: inset 0 2px 4px rgba(69, 42, 77, .1); }
+.cell { display: grid; aspect-ratio: 1; place-items: center; min-width: 0; padding: 0; border: 0; border-radius: 6px; color: var(--ink); background: #fff9fd; font: 700 clamp(13px, 4vw, 18px) 'DM Mono', monospace; cursor: pointer; transition: transform .12s, background .12s; }
+.cell:not(.open):hover { transform: translateY(-2px); background: #fff; }
+.cell.open { background: #e6def0; cursor: default; }
+.cell.flagged { color: var(--pink-dark); background: #ffdce8; }
+.cell.mine { background: #f6adc2; }
+.cell[data-number="1"] { color: #4b72c8; } .cell[data-number="2"] { color: #388e66; } .cell[data-number="3"] { color: #cb5b70; } .cell[data-number="4"] { color: #7657ad; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 16px; }
+.control-button { min-height: 44px; border: 0; border-radius: 11px; font-size: 12px; font-weight: 800; cursor: pointer; transition: transform .2s, opacity .2s; }
+.control-button:hover:not(:disabled) { transform: translateY(-2px); }.control-button:disabled { opacity: .4; cursor: not-allowed; }
+.secondary { color: var(--ink); background: #e8e0f7; }.secondary[aria-pressed="true"] { color: #fff; background: var(--ink); }
+.primary { color: #fff; background: var(--pink); }.hint { margin: 13px 2px 0; color: var(--muted); font-size: 10px; line-height: 1.4; text-align: center; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 390px) { .app-shell { width: min(100% - 18px, 580px); padding-top: 20px; } .game-panel { padding-inline: 12px; } .subtitle { font-size: 12px; } }
